@@ -3,18 +3,20 @@
 	"name": "twt_dev",
 	"version": "0.1.0",
 	"private": true,
-	"dependencies": {
-		"@testing-library/jest-dom": "^5.17.0",
-		"@testing-library/react": "^13.4.0",
-		"@testing-library/user-event": "^13.5.0",
+	"devDependencies": {
+		"@tanstack/react-table": "^8.16.0",
+		"@testing-library/jest-dom": "^6.4.2",
+		"@testing-library/react": "^15.0.4",
+		"@testing-library/user-event": "^14.5.2",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
-		"react-scripts": "5.0.1",
-		"web-vitals": "^2.1.4"
+		"react-scripts": "^5.0.1",
+		"react-table": "^7.8.0",
+		"web-vitals": "^3.5.2"
 	},
 	"scripts": {
-		"start": "react-scripts start",
-		"build": "react-scripts build",
+		"start": "react-scripts --openssl-legacy-provider start",
+		"build": "react-scripts --openssl-legacy-provider build",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject"
 	},
@@ -23,6 +25,13 @@
 			"react-app",
 			"react-app/jest"
 		]
+	},
+	"globals": {
+		"getTableProps": false,
+		"getTableBodyProps": false,
+		"headerGroup": false,
+		"rows": false,
+		"prepareRow": false
 	},
 	"browserslist": {
 		"production": [
@@ -35,5 +44,10 @@
 			"last 1 firefox version",
 			"last 1 safari version"
 		]
+	},
+	"dependencies": {
+		"react-data-table-component": "^7.6.2",
+		"react-select": "^5.8.0",
+		"styled-components": "^6.1.8"
 	}
 }

@@ -1,105 +1,180 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
-import ToDoListItem from "./ToDoListItem.js"
+import { columns, data } from "./tableData";
+import ToDoListItem from "./components/ToDoListItem.js";
+import Character from "./components/character.js";
+import MyDropDown from "./components/Dropdown.js";
+import { createContext, useContext } from 'react';
+import { characterData } from './images.js';
+import Select from "react-select";
 
-class App extends Component {
 
-  // ToDoListをstateに定義、初期値はlocalStorageから取得または []
-  state = {
-    todoList: JSON.parse(localStorage.getItem("todoList")) || []
-  }
+function App() {
+	const [todoList, setTodoList] = useState(JSON.parse(localStorage.getItem("todoList")) || []);
 
-  // todoList itemの追加
-  addTodo = (item, callBack) => {
-    // todoList stateに追加
-    this.setState(
-      {
-        todoList: this.state.todoList.concat(item)
-      },
-      () => {
-        // localStorageにtodoList stateを保存
-        localStorage.setItem("todoList", JSON.stringify(this.state.todoList))
-        // callBack関数が引数に渡されていた場合に実行
-        callBack && callBack()
-      }
-    )
-  }
+	const addTodo = (item, callBack) => {
+		setTodoList(prevTodoList => [...prevTodoList, item]);
+		localStorage.setItem("todoList", JSON.stringify([...todoList, item]));
+		callBack && callBack();
+	}
 
-  // todoListからitemを削除
-  removeTodo = (item, callBack) => {
-    this.setState(
-      {
-        todoList: this.state.todoList.filter(x => x !== item)
-      },
-      () => {
-        // localStorageにtodoList stateを保存
-        localStorage.setItem("todoList", JSON.stringify(this.state.todoList))
-        // callBack関数が引数に渡されていた場合に実行
-        callBack && callBack()
-      }
-    )
-  }
+	const removeTodo = (item, callBack) => {
+		setTodoList(prevTodoList => prevTodoList.filter(x => x !== item));
+		localStorage.setItem("todoList", JSON.stringify(todoList.filter(x => x !== item)));
+		callBack && callBack();
+	}
+	
+	//クリックしたとき、ドロップダウンメニューを表示する
+	const showDropDown = (e) => {
+		const target = e.target;
+		const parent = target.parentElement;
+		const dropdown = parent.querySelector('.dropdown');
+		dropdown.classList.toggle('show');
+	}
 
-  render() {
-    return (
-      <div className="App">
-        <form
-          className="App-form"
-          onSubmit={e => {
-            // formのデフォルトのイベントをキャンセル
-            e.preventDefault();
+	useEffect(() => {
+			localStorage.setItem("todoList", JSON.stringify(todoList));
+		}, [todoList]);
+	
+	const chemists = characterData.filter(character =>
+		character.group === 'カラス'
+	);
+	
+	const getCharacter = (e) => {
+		//画面上に表示されているキャラクターを取得する
+		//キャラクターの名前を取得し、配列に追加する
+		//配列を返す
+		let characterData = [];
+		const character = document.querySelectorAll('.character');
+		for (let i = 0; i < character.length; i++) {
+			const name = character[i].querySelector('.name').textContent;
+			characterData.push({ name: name });
+		}
+		
+		return characterData
+	}
+	
+	
+	
 
-            // idがtitleのElementを取得
-            const titleElement = e.target.elements["title"]
-            // idがdescriptionのElementを取得
-            const descriptionElement = e.target.elements["description"];
+	return (
+		
+		<div className="App">
+			<form className="App-form">
+				<div class="characterfield">
+					<Character 
+						name = "A111"
+						title = "a222"
+						default = "1"
+						SelectCharacter = {() => getCharacter()}
+					/>
+					<Character />
+				</div>
+				<div class="kemo">kemo</div>
+				<div class="characterfield">
+					<div class="accessoryfield">
+						<div class="accessory">C</div>
+						<div class="accessory">C</div>
+						<div class="accessory">C</div>
+						<div class="accessory">C</div>
+					</div>
+					<div class="accessoryfield">
+						<div class="accessory">C</div>
+						<div class="accessory">C</div>
+						<div class="accessory">C</div>
+						<div class="accessory">C</div>
+					</div>
+				</div>
+			</form>
+			<form className="App-form">
+				<div class="characterfield">
+					<Character />
+					<Character />
+				</div>
+				<div class="kemo">C</div>
+				<div class="characterfield">
+					<div class="accessoryfield">
+						<div class="accessory">C</div>
+						<div class="accessory">C</div>
+						<div class="accessory">C</div>
+						<div class="accessory">C</div>
+					</div>
+					<div class="accessoryfield">
+						<div class="accessory">C</div>
+						<div class="accessory">C</div>
+						<div class="accessory">C</div>
+						<div class="accessory">C</div>
+					</div>
+				</div>
+			</form>
+			<form className="App-form">
+				<div class="characterfield">
+					<Character 
+					name = "A111"
+					title = "a222"
+					/>
+					<Character 
+					name = "A112"
+					/>
+				</div>
+				<div class="kemo">C</div>
+				<div class="characterfield">
+					<div class="accessoryfield">
+						<div class="accessory">C</div>
+						<div class="accessory">C</div>
+						<div class="accessory">C</div>
+						<div class="accessory">C</div>
+					</div>
+					<div class="accessoryfield">
+						<div class="accessory">C</div>
+						<div class="accessory">C</div>
+						<div class="accessory">C</div>
+						<div class="accessory">C</div>
+					</div>
+				</div>
+			</form>
+			<form className="App-form"
+				onSubmit={e => {
+					e.preventDefault();
+					
 
-            this.addTodo(
-              {
-                title: titleElement.value,
-                description: descriptionElement.value
-              },
-              () => {
-                // stateの変更後に入力した値を空にする
-                titleElement.value = "";
-                descriptionElement.value = "";
-              }
-            )
-          }}
-        >
-          <div>
-            <input
-              id="title"
-              placeholder="title"
-            />
-            <textarea
-              id="description"
-              placeholder="description"
-            />
-          </div>
-          <div>
-            <button
-              type="submit"
-            >
-              登録
-            </button>
-          </div>
-        </form>
-        <div>
-        {/* todoList配列の要素数分ToDoListItemコンポーネントを展開 */}
-          {this.state.todoList.map(todo => (
-            <ToDoListItem
-              key={todo.title}
-              title={todo.title}
-              description={todo.description}
-              // クリックされたItemをtodoList stateから削除
-              onClick={() => this.removeTodo(todo)}
-            />
-          ))}
-        </div>
-      </div>
-    );
-  }
+					const titleElement = e.target.elements["title"];
+					const descriptionElement = e.target.elements["description"];
+
+					addTodo(
+						{
+							title: titleElement.value,
+							description: descriptionElement.value
+						},
+						() => {
+							titleElement.value = "";
+							descriptionElement.value = "";
+						}
+					)
+				}}
+			>
+				<div>
+					<input id="title" placeholder="title" />
+					<textarea id="description" placeholder="description" />
+				</div>
+				<div>
+					<button type="submit">
+						登録
+					</button>
+				</div>
+			</form>
+			<div>
+				{todoList.map(todo => (
+					<ToDoListItem
+						key={todo.title}
+						title={todo.title}
+						description={todo.description}
+						onClick={() => removeTodo(todo)}
+					/>
+				))}
+			</div>
+		</div>
+	);
 }
 
 export default App;
