@@ -1,11 +1,11 @@
 .App {
 	display: flex;
-	width: 300px;
-	height: 800px;
+	width: 3000px;
+	height: 8000px;
 }
 .App-form {
-	width: 100px;
-	height: 700px;
+	width: 1000px;
+	height: 7000px;
 	margin-right: 3px;
 }
 
@@ -14,15 +14,15 @@
   
 }
 .character {
-  width: 50px;
-  height: 80px;
+  width: 500px;
+  height: 800px;
   border: 1px solid black;
   margin-bottom: -1px;
   margin-right: -1px;
 }
 .kemo{
-  width: 100px;
-  height: 50px;
+  width: 1000px;
+  height: 500px;
   border: 1px solid black;
   margin-bottom: -1px;
   margin-right: -1px;
@@ -32,13 +32,42 @@
   flex-direction: column;
 }
 .accessory{
-  width: 25px;
-  height: 25px;
+  width: 250px;
+  height: 250px;
   border: 1px solid black;
   margin-bottom: -1px;
   margin-right: -1px;
 }
 
+.groupBadgeStyles{
+	background-color: #EBECF0;
+	border-radius: 2em;
+	color: #172B4D;
+	display: inline-block;
+	font-size: 12px;
+	font-weight: normal;
+	line-height: 1;
+	min-width: 1;
+	padding: 0.16666666666667em 0.5em;
+	text-align: center;
+}
+.groupStyles{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+};
+
+.userSelect {
+    margin: 10rem;
+}
+.selected {
+    padding: 1rem;
+}
+.characterImg{
+	max-height:100%;
+	max-width:100%;
+	
+}
 
 
 

@@ -1,4 +1,5 @@
 import DataTable from 'react-data-table-component';
+import React from 'react';
 
 const columns = [
 	{
