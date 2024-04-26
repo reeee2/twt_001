@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import { columns, data } from "./tableData";
+import { columns, data } from "./tableData.js";
 import ToDoListItem from "./components/ToDoListItem.js";
 import Character from "./components/character.js";
 import MyDropDown from "./components/Dropdown.js";
@@ -73,10 +73,22 @@ function App() {
 				<div class="kemo">kemo</div>
 				<div class="characterfield">
 					<div class="accessoryfield">
+						<div class="accessory">A</div>
+						<div class="accessory">A</div>
+						<div class="accessory">A</div>
+						<div class="accessory">A</div>
+					</div>
+					<div class="accessoryfield">
 						<div class="accessory">C</div>
 						<div class="accessory">C</div>
 						<div class="accessory">C</div>
 						<div class="accessory">C</div>
+					</div>
+					<div class="accessoryfield">
+						<div class="accessory">A</div>
+						<div class="accessory">A</div>
+						<div class="accessory">A</div>
+						<div class="accessory">A</div>
 					</div>
 					<div class="accessoryfield">
 						<div class="accessory">C</div>
@@ -94,10 +106,22 @@ function App() {
 				<div class="kemo">C</div>
 				<div class="characterfield">
 					<div class="accessoryfield">
+						<div class="accessory">A</div>
+						<div class="accessory">A</div>
+						<div class="accessory">A</div>
+						<div class="accessory">A</div>
+					</div>
+					<div class="accessoryfield">
 						<div class="accessory">C</div>
 						<div class="accessory">C</div>
 						<div class="accessory">C</div>
 						<div class="accessory">C</div>
+					</div>
+					<div class="accessoryfield">
+						<div class="accessory">A</div>
+						<div class="accessory">A</div>
+						<div class="accessory">A</div>
+						<div class="accessory">A</div>
 					</div>
 					<div class="accessoryfield">
 						<div class="accessory">C</div>
@@ -120,10 +144,22 @@ function App() {
 				<div class="kemo">C</div>
 				<div class="characterfield">
 					<div class="accessoryfield">
+						<div class="accessory">A</div>
+						<div class="accessory">A</div>
+						<div class="accessory">A</div>
+						<div class="accessory">A</div>
+					</div>
+					<div class="accessoryfield">
 						<div class="accessory">C</div>
 						<div class="accessory">C</div>
 						<div class="accessory">C</div>
 						<div class="accessory">C</div>
+					</div>
+					<div class="accessoryfield">
+						<div class="accessory">A</div>
+						<div class="accessory">A</div>
+						<div class="accessory">A</div>
+						<div class="accessory">A</div>
 					</div>
 					<div class="accessoryfield">
 						<div class="accessory">C</div>
