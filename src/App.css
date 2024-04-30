@@ -1,67 +1,76 @@
 .App {
-  width: 800px;
-  margin: 20px auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+	display: flex;
+	width: 3000px;
+	height: 8000px;
 }
-
 .App-form {
+	width: 1000px;
+	height: 7000px;
+	margin-right: 3px;
+}
+
+.characterfield{
+  display: flex;
+  
+}
+.character {
+  width: 500px;
+  height: 800px;
+  border: 1px solid black;
+  margin-bottom: -1px;
+  margin-right: -1px;
+}
+.kemo{
+  width: 1000px;
+  height: 500px;
+  border: 1px solid black;
+  margin-bottom: -1px;
+  margin-right: -1px;
+}
+.accessoryfield{
   display: flex;
   flex-direction: column;
-  width: 300px;
-  margin: 8px 4px;
-  padding-bottom: 16px;
-  border-bottom: 1px solid #aaa;
+}
+.accessory{
+  width: 250px;
+  height: 250px;
+  border: 1px solid black;
+  margin-bottom: -1px;
+  margin-right: -1px;
 }
 
-.App-form > :nth-child(1) {
+.groupBadgeStyles{
+	background-color: #EBECF0;
+	border-radius: 2em;
+	color: #172B4D;
+	display: inline-block;
+	font-size: 12px;
+	font-weight: normal;
+	line-height: 1;
+	min-width: 1;
+	padding: 0.16666666666667em 0.5em;
+	text-align: center;
+}
+.groupStyles{
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+};
+
+.userSelect {
+    margin: 10rem;
+}
+.selected {
+    padding: 1rem;
+}
+.characterImg{
+	max-height:100%;
+	max-width:100%;
+	
 }
 
-.App-form > :nth-child(1) > * {
-  outline: none;
-  border: 1px solid #aaa;
-  transition: all .3s;
-  border-radius: 2px;
-}
 
-.App-form > :nth-child(1) > *:focus {
-  box-shadow: 0 0 7px #1abc9c;
-  border: 1px solid #1abc9c;
-}
 
-.App-form > :nth-child(1) > :first-child {
-  font-size: 18px;
-  height: 24px;
-  padding: 2px 8px;
-}
 
-.App-form > :nth-child(1) > :last-child {
-  margin-top: 4px;
-  font-size: 16px;
-  height: 40px;
-  padding: 2px 8px;
-}
 
-.App-form > :nth-child(2) {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-}
 
-.App-form button {
-  border: 1px solid #ccc;
-  background: white;
-  padding: 4px 8px;
-  border-radius: 2px;
-  margin-top: 8px;
-  cursor: pointer;
-  box-shadow: 0px 2px 2px 0px rgba(0,0,0,.1);
-}
-
-.App-form button:hover {
-  box-shadow: 0px 2px 2px 2px rgba(0,0,0,.1);
-}
