@@ -5,23 +5,20 @@ import Select from "react-select";
 
 import {
   CharacterOption,
-  characterOptions,
-  GroupedOption,
-  groupedOptions
+  characterOptions
 } from '../character';
 
 export const groups = [...new Set(characterOptions.map(option => option.group))];
-export interface CharacterGroupOption {
+export interface GroupOption {
   label: string;
   options: CharacterOption[];
 }
-export const characterGroupedOptions:readonly CharacterGroupOption[] = [
+export const groupedOptions:readonly GroupOption[] = [
 	// groupが一致するものをまとめる
 	...groups.map(group => ({
 		label: group,
 		options: characterOptions.filter(option => option.group === group)
 	}))
-	
 ];
 
 // コンポーネントのProps。初期値と選択時の関数を渡します
@@ -39,6 +36,7 @@ type UserOption = {
   name: string;
   speed: number;
   url: string;
+  useweapon: string;
 };
 
 // Option型をUser型に変換します。react-select から渡されたデータをアプリで扱うために使います
@@ -50,6 +48,7 @@ function convertToUser(args: UserOption | null): CharacterOption | null {
     group: args.name,
 	speed: args.speed,
     url: args.url!,
+	useweapon: args.useweapon,
   };
 }
 
@@ -61,26 +60,19 @@ function convertToOption(user: CharacterOption): UserOption {
     name: user.group,
 	speed: user.speed,
     url: user.url!,
+	useweapon: user.useweapon,
   };
 }
 
-const FormatOptionLabel = (({ option }: { option: UserOption }) => (
-	<div className="userSelect">
-		<div className="characterName">{option.label}</div>
-	</div>
-));
-
-
 function outselectedto(selected: String[]): CharacterOption[] {
 	//characterGroupedOptions.labelとselected[]の内容が一致するものを除外
-	const returnOptions = characterGroupedOptions.filter(option => selected.indexOf(option.label) === -1);
+	const returnOptions = groupedOptions.filter(option => selected.indexOf(option.label) === -1);
 	const returnOption = returnOptions.map(option => option.options).flat();
 	return returnOption;
 } 
 
-
 // react-select を使った、ユーザー選択コンポーネント
- const UserSelect: React.FC<UseSelectProps> = ({ setUser, selected ,otherselect }) => {
+ const CharacterSelect: React.FC<UseSelectProps> = ({ setUser, selected ,otherselect }) => {
 	const value = useMemo(
 		() => (selected ? convertToOption(selected) : null),
 		[selected]
@@ -92,13 +84,15 @@ function outselectedto(selected: String[]): CharacterOption[] {
 
 	return (
 		<Select
-		  instanceId="userSelect"
-		  value={value} // 選択中の値
-		  onChange={onChange} // 選択されたときにはしる処理
-			  // characterOptions.groupからoutselected[]を引いたものを選択肢として渡します
-		  options= {outselectedto(otherselect).map(convertToOption)}
+			instanceId="CharacterSelect"
+			value={value} // 選択中の値
+			onChange={onChange} // 選択されたときにはしる処理
+			// characterOptions.groupからoutselected[]を引いたものを選択肢として渡します
+			options= {outselectedto(otherselect).map(convertToOption)}
+			className="container"
+			classNamePrefix="rs"
 		/>
 	);
 };
 
-export default UserSelect;
+export default CharacterSelect;
